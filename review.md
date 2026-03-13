@@ -222,7 +222,7 @@ async with httpx.AsyncClient(timeout=timeout) as client:
 
 ## БАГ 6
 * Проблема: при POST-запросе на `/api/v1/vacancies` с уже существующим в базе данных `external_id` в теле запроса Swagger UI возвращает некорректный и неинформативный статус 200 (смотри скриншот)
-скрин
+<img src="./misc/200.png" width="800">
 * Файл и строки: `app/api/v1/vacancies.py:45, 51-55`
 
 ```
@@ -251,7 +251,7 @@ async with httpx.AsyncClient(timeout=timeout) as client:
 
 ## БАГ 7
 * Проблема: не все возможные ответы API-эндпоинтов задокументированы в Swagger UI. Например, при GET-запросе на `/api/v1/vacancies/{vacancy_id}` с несуществующим в базе данных `id` API возвращает 404, но такой ответ не задокументирован в Swagger:
-скриншот
+<img src="./misc/undocumented.png" width="800">
 * Решение: добавим параметр `responses` в декоратор эндпоинта и укажем в нем дополнительный возможный ответ
 * Файл и строки: `app/api/v1/vacancies.py:35`
 
@@ -267,7 +267,7 @@ async with httpx.AsyncClient(timeout=timeout) as client:
     },)
 ```
 * Объяснение: теперь все возможные ответы эндпоинта правильно задокументированы в Swagger (аналогичные изменения можно внести для всех остальных эндпоинтов). 
-скриншот
+<img src="./misc/responses.png" width="800">
 ---
 
 
